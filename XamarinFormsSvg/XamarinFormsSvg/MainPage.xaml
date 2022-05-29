@@ -1,15 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:XamarinFormsSvg.Converters"
              x:Class="XamarinFormsSvg.MainPage">
 
+    <ContentPage.Resources>
+        <converters:UrlToImageSourceConverter x:Key="UrlToImageSourceConverter" />
+    </ContentPage.Resources>
     <StackLayout>
         <ListView ItemsSource="{Binding Currencies}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding LogoUrl}"/>
+                            <Image Source="{Binding LogoUrl, Converter={StaticResource UrlToImageSourceConverter}}"/>
                             <Label Text="{Binding Symbol}"/>
                         </StackLayout>
                     </ViewCell>
